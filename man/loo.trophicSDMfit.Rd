@@ -4,10 +4,12 @@
 \alias{loo.trophicSDMfit}
 \title{Computes an approximation of loo for the whole model}
 \usage{
-\method{loo}{trophicSDMfit}(tSDM)
+\method{loo}{trophicSDMfit}(x, ...)
 }
 \arguments{
-\item{tSDM}{A trophicSDMfit object obtained with trophicSDM()}
+\item{x}{A trophicSDMfit object obtained with trophicSDM()}
+
+\item{...}{additional arguments}
 }
 \value{
 The value of the loo for the whole model
@@ -20,7 +22,7 @@ data(Y, X, G)
 # define abiotic part of the model
 env.formula = "~ X_1 + X_2"
 # Run the model with bottom-up control using stan_glm as fitting method and no penalisation
-m = trophicSDM(Y,X,G, env.formula, 
+m = trophicSDM(Y,X,G, env.formula,
                family = binomial(link = "logit"), penal = NULL, iter = 50,
                mode = "prey", method = "stan_glm")
 \donttest{brms::loo(m)}
